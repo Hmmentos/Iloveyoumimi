@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Falling hearts */
+  .heart {
+    position: absolute;
+    top: -10px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    from {
+      transform: translateY(-10vh);
+    }
+    to {
+      transform: translateY(110vh);
+    }
+  }
+
+  .card {
+    position: relative;
+    background: white;
+    width: 90%;
+    max-width: 350px;
+    padding: 30px 20px;
+    border-radius: 25px;
+    text-align: center;
+    z-index: 10;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+
+  h1 {
+    color: #ff4d6d;
+    font-size: 1.7rem;
+    margin-bottom: 25px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #yesBtn {
+    background: #ff4d6d;
+    color: white;
+  }
+
+  #noBtn {
+    background: #ffe3ea;
+    color: #ff4d6d;
+    position: relative;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+  <h1 id="question">Miles, will you be my Valentine? 💘</h1>
+  <button id="yesBtn">Yes 💕</button>
+  <button id="noBtn">No ☹️</button>
+</div>
+
+<script>
+  // Falling hearts generator
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    heart.style.fontSize = (16 + Math.random() * 10) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(createHeart, 300);
+
+  // No button runs away (mobile-friendly)
+  const noBtn = document.getElementById("noBtn");
+  const card = document.getElementById("card");
+
+  noBtn.addEventListener("touchstart", moveNoButton);
+  noBtn.addEventListener("click", moveNoButton);
+
+  function moveNoButton() {
+    const maxX = card.clientWidth - noBtn.offsetWidth;
+    const maxY = card.clientHeight - noBtn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
+
+  // YES clicked
+  document.getElementById("yesBtn").onclick = () => {
+    document.body.innerHTML = `
+      <div style="
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background: linear-gradient(135deg, #ff4d6d, #ffb3c6);
+        font-family: 'Segoe UI', Arial;
+        color:white;
+        text-align:center;
+      ">
+        <h1 style="font-size:2.4rem;">
+          YEYYY 💖💖💖<br>
+          Happy Valentine’s, Miles! 🥰
+        </h1>
+      </div>
+    `;
+  };
+</script>
+
+</body>
+</html>
