@@ -32,3 +32,29 @@ yesBtn.addEventListener("click", () => {
   document.getElementById("letter-buttons").style.display = "none";
   finalText.style.display = "block";
 });
+
+/* Soft fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.letter-window {
+  animation: fadeIn 0.8s ease;
+}
+
+/* Gentle floating hearts */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 18px;
+  opacity: 0.7;
+  animation: fall 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
