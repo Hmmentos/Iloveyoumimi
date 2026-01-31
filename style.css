@@ -14,7 +14,7 @@ body {
   overflow: hidden;
 }
 
-/* Envelope screen */
+/* Envelope Screen */
 #envelope-container {
   text-align: center;
 }
@@ -27,11 +27,11 @@ body {
 
 #envelope-container p {
   color: white;
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 1.2rem;
 }
 
-/* Letter screen */
+/* Letter Screen */
 #letter-container {
   display: none;
   width: 100%;
@@ -40,6 +40,7 @@ body {
   align-items: center;
 }
 
+/* Letter Card */
 .letter-window {
   background: white;
   width: 90%;
@@ -48,6 +49,12 @@ body {
   border-radius: 25px;
   text-align: center;
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 h1 {
@@ -70,9 +77,26 @@ h1 {
   margin: 10px;
 }
 
+/* Final Message */
 .final-text {
+  display: none;
   margin-top: 20px;
   font-size: 1.1rem;
   color: #ff4d6d;
-  display: none;
+}
+
+/* Falling Hearts */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 18px;
+  opacity: 0.7;
+  animation: fall 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
 }
